@@ -1,0 +1,14 @@
+== README
+
+This is a useless app that demonstrates auth 
+workflow using devise, and async using sidekiq.  
+
+when a logged in user creates a gadget, the gadget factory is 
+called to start building a gadget, which takes 60 seconds.  The job is 
+passed off to sidekiq in the "gadget factory" queue and does not block 
+the saving of the gadget's name and price.  
+
+To Do: 
+
+* Rspec tests
+* Haml templates in views
