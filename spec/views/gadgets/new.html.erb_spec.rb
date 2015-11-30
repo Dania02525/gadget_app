@@ -18,7 +18,6 @@ RSpec.describe "gadgets/new", type: :view do
 
       assert_select "input#gadget_price[name=?]", "gadget[price]"
 
-      assert_select "input#gadget_inventory[name=?]", "gadget[inventory]"
     end
   end
 end

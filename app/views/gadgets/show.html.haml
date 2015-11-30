@@ -1,0 +1,13 @@
+%p#notice= notice 
+
+%p
+  %strong Name: #{@gadget.name}
+
+%p
+  %strong Price: #{@gadget.price}
+
+%p
+  %strong Inventory: #{@gadget.inventory}
+
+= link_to 'Edit', edit_gadget_path(@gadget)
+= link_to 'Back', gadgets_path

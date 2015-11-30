@@ -8,7 +8,5 @@ called to start building a gadget, which takes 60 seconds.  The job is
 passed off to sidekiq in the "gadget factory" queue and does not block 
 the saving of the gadget's name and price.  
 
-To Do: 
-
-* Rspec tests
-* Haml templates in views
+* Rspec tests passing
+* All views converted to Haml with bootstrap classes

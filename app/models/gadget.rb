@@ -1,4 +1,7 @@
 class Gadget < ActiveRecord::Base
+  validates :name, presence: true
+  validates :price, presence: true
+  
   after_create :start_gadget_factory
 
 

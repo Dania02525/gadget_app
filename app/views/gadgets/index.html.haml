@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%h1 Listing Gadgets
+
+%table.table-striped.table
+  %thead
+    %tr
+      %th Name
+      %th Price
+      %th Inventory
+      %th{:colspan => "3"}
+  %tbody
+    - @gadgets.each do |gadget|
+      %tr
+        %td= gadget.name 
+        %td= gadget.price 
+        %td= gadget.inventory
+        %td= link_to 'Show', gadget 
+        %td= link_to 'Edit', edit_gadget_path(gadget) 
+        %td= link_to 'Destroy', gadget, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Gadget', new_gadget_path 
