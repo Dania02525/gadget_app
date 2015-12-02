@@ -2,6 +2,8 @@ class GadgetsController < ApplicationController
   before_action :set_gadget, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
+  append_view_path SqlTemplate::Resolver.new
+
   # GET /gadgets
   # GET /gadgets.json
   def index

@@ -16,6 +16,7 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
           <li><%= link_to 'Gadgets', gadgets_path %></li>
+          <li><%= link_to 'View Templates', sql_templates_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">

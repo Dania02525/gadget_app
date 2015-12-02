@@ -1,0 +1,31 @@
+%p#notice= notice 
+
+%h1 Listing Sql Templates
+
+%table.table-striped.table
+  %thead
+    %tr
+      %th Body
+      %th Path
+      %th Format
+      %th Locale
+      %th Handler
+      %th Partial
+      %th{:colspan => "3"}
+
+  %tbody
+    - @sql_templates.each do |sql_template| 
+      %tr
+        %td= sql_template.body 
+        %td= sql_template.path 
+        %td= sql_template.format 
+        %td= sql_template.locale 
+        %td= sql_template.handler 
+        %td= sql_template.partial 
+        %td= link_to 'Show', sql_template 
+        %td= link_to 'Edit', edit_sql_template_path(sql_template) 
+        %td= link_to 'Destroy', sql_template, method: :delete, data: { confirm: 'Are you sure?' } 
+
+%br
+
+= link_to 'New Sql template', new_sql_template_path

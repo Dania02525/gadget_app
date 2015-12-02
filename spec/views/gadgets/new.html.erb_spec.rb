@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "gadgets/new", type: :view do
+
+  before(:all) do
+    load "#{Rails.root}/db/seeds.rb" 
+  end
+
   before(:each) do
     assign(:gadget, Gadget.new(
       :name => "MyString",
       :price => 1,
       :inventory => 1
     ))
+  end
+
+  after(:all) do
+    ActiveRecord::Base.connection.execute('delete from sql_templates')
   end
 
   it "renders new gadget form" do

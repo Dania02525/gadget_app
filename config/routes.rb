@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :sql_templates
   mount Sidekiq::Web, at: '/sidekiq'
 
   resources :gadgets

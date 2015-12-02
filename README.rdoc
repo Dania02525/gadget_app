@@ -10,3 +10,8 @@ the saving of the gadget's name and price.
 
 * Rspec tests passing
 * All views converted to Haml with bootstrap classes
+* Gadget views rendered from database
+
+run rake db.create
+run rake db.migrate
+run rake db.seed (this seeds the gadget haml views to the database)

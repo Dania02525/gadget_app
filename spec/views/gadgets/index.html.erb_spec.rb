@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "gadgets/index", type: :view do
+
+  before(:all) do
+    load "#{Rails.root}/db/seeds.rb" 
+  end
+
   before(:each) do
     assign(:gadgets, [
       Gadget.create!(
@@ -14,6 +19,10 @@ RSpec.describe "gadgets/index", type: :view do
         :inventory => 2
       )
     ])
+  end
+
+  after(:all) do
+    ActiveRecord::Base.connection.execute('delete from sql_templates')
   end
 
   it "renders a list of gadgets" do

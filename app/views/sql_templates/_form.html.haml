@@ -1,0 +1,40 @@
+= form_for(@sql_template) do |f| 
+  - if @sql_template.errors.any? 
+    #error_explanation
+      %h2 #{pluralize(@sql_template.errors.count, "error")} prohibited this sql_template from being saved:
+      %ul
+        - @sql_template.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :body
+    %br
+    = f.text_area :body, class: "form-control"
+
+  .form-group
+    = f.label :path
+    %br
+    = f.text_field :path, class: "form-control"
+
+  .form-group
+    = f.label :format
+    %br
+    = f.text_field :format, class: "form-control"
+
+  .form-group
+    = f.label :locale
+    %br
+    = f.text_field :locale, class: "form-control"
+
+  .form-group
+    = f.label :handler
+    %br
+    = f.text_field :handler, class: "form-control"
+
+  .form-group
+    = f.label :partial
+    %br
+    = f.check_box :partial
+
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

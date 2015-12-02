@@ -22,6 +22,14 @@ require 'devise'
 RSpec.describe GadgetsController, type: :controller do
   login_user
 
+  before(:all) do
+    load "#{Rails.root}/db/seeds.rb" 
+  end
+
+  after(:all) do
+    ActiveRecord::Base.connection.execute('delete from sql_templates')
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Gadget. As you add validations to Gadget, be sure to
   # adjust the attributes here as well.

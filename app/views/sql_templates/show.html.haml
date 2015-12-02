@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %strong Body: #{@sql_template.body}
+
+%p
+  %strong Path: #{@sql_template.path}
+
+%p
+  %strong Format: #{@sql_template.format}
+
+%p
+  %strong Locale: #{@sql_template.locale}
+
+%p
+  %strong Handler: #{@sql_template.handler}
+
+%p
+  %strong Partial: #{@sql_template.partial}
+
+= link_to 'Edit', edit_sql_template_path(@sql_template)
+= link_to 'Back', sql_templates_path 
