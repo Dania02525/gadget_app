@@ -15,3 +15,21 @@
 //= require turbolinks
 //= require bootstrap/dropdown
 //= require_tree .
+window.onload = function() {
+  var source = new EventSource('/live/gadgets');
+
+  source.addEventListener(':ping', function(e){
+    console.log(e.type);
+  });
+
+  source.addEventListener(':update_price', function(e){
+    data = JSON.parse(e.data)
+    $("#gadget-price-"+ data.id).html(data.price);
+  });
+
+  source.addEventListener(':update_inventory', function(e){
+    data = JSON.parse(e.data)
+    $("#gadget-inventory-"+ data.id).html(data.inventory);
+  });
+}
+

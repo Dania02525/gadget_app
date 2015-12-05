@@ -1,8 +1,26 @@
 class GadgetsController < ApplicationController
+  include ActionController::Live
+  include GadgetNotifier
+
   before_action :set_gadget, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
-  append_view_path SqlTemplate::Resolver.new
+  append_view_path SqlTemplate::Resolver.instance
+
+  def live_info
+    response.headers["Cache-Control"] = "no-cache"
+    response.headers["Content-Type"] = "text/event-stream"
+    GadgetNotifier.pinger(7)
+
+    gadget_queue = GadgetNotifier::Subscriber.new
+
+    gadget_queue.pop do |event|
+      response.stream.write event
+    end
+
+  rescue IOError
+    response.stream.close
+  end
 
   # GET /gadgets
   # GET /gadgets.json

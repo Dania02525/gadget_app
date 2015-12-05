@@ -41,6 +41,14 @@ gem 'sinatra', require: false
 
 gem 'slim'
 
+gem 'redis'
+
+gem 'redis-namespace'
+
+gem 'redis-rails'
+
+gem 'redis-rack-cache'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -57,6 +65,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 
   gem 'factory_girl_rails'
+
+  gem 'rack-mini-profiler'
 end
 
 group :development do

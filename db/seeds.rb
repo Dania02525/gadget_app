@@ -22,8 +22,8 @@ gadget_templates = [
     - @gadgets.each do |gadget| 
       %tr 
         %td= gadget.name 
-        %td= gadget.price 
-        %td= gadget.inventory 
+        %td{:id => "gadget-price-#{gadget.id}"}= gadget.price 
+        %td{:id => "gadget-inventory-#{gadget.id}"}= gadget.inventory 
         %td= link_to 'Show', gadget 
         %td= link_to 'Edit', edit_gadget_path(gadget) 
         %td= link_to 'Destroy', gadget, method: :delete, data: { confirm: 'Are you sure?' } 
@@ -83,7 +83,7 @@ gadget_templates = [
   .form-group
     = f.label :price
     %br
-    = f.number_field :price, class: "form-control"
+    = f.number_field :price, class: "form-control", id: "gadget-price"
 
   .actions
     = f.submit nil, class: 'btn btn-primary'

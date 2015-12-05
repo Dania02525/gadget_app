@@ -17,6 +17,11 @@ Bundler.require(*Rails.groups)
 
 module GadgetApp
   class Application < Rails::Application
+
+    config.cache_store = :redis_store, 'redis://localhost:6379/1/cache', { expires_in: 90.minutes }
+
+    config.allow_concurrency = true
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -8,7 +8,7 @@ RSpec.describe SqlTemplate, type: :model do
 
   describe "Resolver" do
     it "returns a template with the saved body" do
-      resolver = SqlTemplate::Resolver.new
+      resolver = SqlTemplate::Resolver.instance
       details = { formats: [:html], locale: [:en], handlers: [:haml] }
       expect(resolver.find_all("index", "gadgets", false, details).empty?).to be true
 
@@ -20,6 +20,18 @@ RSpec.describe SqlTemplate, type: :model do
       expect(template.formats).to eq([:html])
       expect(template.virtual_path).to eq("gadgets/index")
       expect(template.identifier).to match(%r[SqlTemplate - \d+ - "gadgets/index"])
+    end
+
+    it "expires cache on template change" do
+      template = SqlTemplate.create!(template_attributes) 
+      cache_key = Object.new
+      resolver = SqlTemplate::Resolver.instance
+      details = { formats: [:html], locale: [:en], handlers: [:haml] }
+      t = resolver.find_all("index", "gadgets", false, details, cache_key).first
+      expect(t.source).to eq("%p= 'Yo Dawg...'")
+      template.update_attributes(body: "%p= 'Whatup Dawg'")
+      t = resolver.find_all("index", "gadgets", false, details, cache_key).first
+      expect(t.source).to eq("%p= 'Whatup Dawg'")
     end
   end
 
